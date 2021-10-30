@@ -1,6 +1,8 @@
 package com.smile.entity;
 
 import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
@@ -15,6 +17,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
+@Builder
 @Table(name = "post")
 @Entity
 public class Post extends BaseEntity {
