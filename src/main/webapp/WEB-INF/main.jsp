@@ -78,7 +78,7 @@
                 <th>${post.getId()}</th>
                 <th>${post.getUsername()}</th>
                 <th>
-                    <a href="">${post.getTitle()}</a>
+                    <a href="http://localhost:8080/api/v1/post/${post.getId()}/return?check=1">${post.getTitle()}</a>
                 </th>
 <%--                <th>${post.getCount()}</th>--%>
                 <th>${post.getCreatedTime()}</th>
