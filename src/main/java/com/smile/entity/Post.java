@@ -37,6 +37,8 @@ public class Post extends BaseEntity {
     @Lob
     private String content;
 
+    private Long views;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
@@ -44,6 +46,10 @@ public class Post extends BaseEntity {
     public void changePost(String title, String content) {
         this.title = title;
         this.content = content;
+    }
+
+    public void increaseViews(Long views) {
+        this.views = views;
     }
 
     public static Post createPost(String title, String content) {

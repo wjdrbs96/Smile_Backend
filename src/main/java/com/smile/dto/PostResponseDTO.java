@@ -14,6 +14,7 @@ public class PostResponseDTO {
     private String username;
     private String title;
     private String content;
+    private Long views;
     private LocalDateTime createdTime;
     private LocalDateTime lastModifiedTime;
 
@@ -23,6 +24,7 @@ public class PostResponseDTO {
                 .username(post.getUser().getName())
                 .title(post.getTitle())
                 .content(post.getContent())
+                .views(post.getViews())
                 .createdTime(post.getCreatedTime())
                 .lastModifiedTime(post.getLastModifiedTime())
                 .build();

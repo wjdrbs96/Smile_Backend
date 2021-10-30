@@ -22,7 +22,7 @@
             crossorigin="anonymous"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
-    <title>Smail Backend Gyunny</title>
+    <title>Smile Backend Gyunny</title>
 </head>
 <style>
     #margin{
@@ -36,7 +36,6 @@
 <body>
 
 <div class="container">
-    <!-- 메뉴바 -->
     <nav class="navbar sticky-top navbar-expand-lg navbar-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +50,6 @@
             </ul>
         </div>
     </nav>
-    <!-- ./ 메뉴바 -->
     <form method="post" class="form-inline">
         <div id="margin" class="form-group">
             <select name="select" class="form-control">
@@ -68,7 +66,7 @@
             <th>번호</th>
             <th>작성자</th>
             <th>제목</th>
-<%--            <th>조회수</th>--%>
+            <th>조회수</th>
             <th>수정시간</th>
             <th>작성시간</th>
         </tr>
@@ -80,7 +78,7 @@
                 <th>
                     <a href="http://localhost:8080/api/v1/post/${post.getId()}/return?check=1">${post.getTitle()}</a>
                 </th>
-<%--                <th>${post.getCount()}</th>--%>
+                <th>${post.getViews()}</th>
                 <th>${post.getCreatedTime()}</th>
                 <th>${post.getLastModifiedTime()}</th>
             </tr>
