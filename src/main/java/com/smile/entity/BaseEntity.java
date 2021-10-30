@@ -1,5 +1,6 @@
 package com.smile.entity;
 
+import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -10,12 +11,13 @@ import java.time.LocalDateTime;
 
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
+@Getter
 public abstract class BaseEntity {
 
     @CreatedDate
-    private LocalDateTime createdTime = LocalDateTime.now();
+    protected LocalDateTime createdTime = LocalDateTime.now();
 
     @LastModifiedDate
-    private LocalDateTime lastModifiedTime = LocalDateTime.now();
+    protected LocalDateTime lastModifiedTime = LocalDateTime.now();
 
 }

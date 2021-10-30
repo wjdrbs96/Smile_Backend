@@ -1,6 +1,7 @@
 package com.smile.entity;
 
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 @Table(name = "user")
 @Entity
 public class User {
@@ -22,4 +24,8 @@ public class User {
 
     private String email;
 
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
 }

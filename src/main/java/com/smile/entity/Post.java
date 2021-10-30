@@ -1,6 +1,7 @@
 package com.smile.entity;
 
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
@@ -15,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 @Table(name = "post")
 @Entity
 public class Post extends BaseEntity {
@@ -32,5 +34,11 @@ public class Post extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    public Post(String title, String content, User user) {
+        this.title = title;
+        this.content = content;
+        this.user = user;
+    }
 
 }
