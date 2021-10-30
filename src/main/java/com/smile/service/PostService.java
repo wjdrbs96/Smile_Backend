@@ -15,6 +15,8 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.smile.entity.User.createUser;
+
 @RequiredArgsConstructor
 @Service
 public class PostService {
@@ -50,15 +52,6 @@ public class PostService {
         postRepository.save(post);
     }
 
-    // 1번 유저의 정보 (로그인 되어 있다고 가정 하기에 세팅)
-    private User createUser() {
-        return User.builder()
-                .id(1L)
-                .email("wjdrbs966@naver.com")
-                .name("Gyunny")
-                .build();
-    }
-
     @Transactional
     public void update(Long postId, String title, String content) {
         Post post = postRepository.findById(postId).orElseThrow(() -> new PostNotFoundException("Post is Not Exist!!"));
@@ -69,4 +62,5 @@ public class PostService {
         Post post = postRepository.findById(postId).orElseThrow(() -> new PostNotFoundException("Post is Not Exist!!"));
         return PostResponseDTO.from(post);
     }
+
 }
