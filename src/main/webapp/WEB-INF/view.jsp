@@ -70,7 +70,8 @@
         </table>
 
         <a class="btn btn-primary" href="http://localhost:8080/api/v1/post/${post.getId()}/return?check=2">수정</a>
-        <a href="http://localhost:8080/comment/list?postId=${post.getId()}" class="btn btn-warning">댓글보기</a>
+        <a href="http://localhost:8080/api/v1/post/${post.getId()}/comment" class="btn btn-warning">댓글보기</a>
+        <a href="http://localhost:8080/api/v1/post/${post.getId()}/comment/return" class="btn btn-warning">댓글쓰기</a>
         <a href="http://localhost:8080/post/delete?postId=${post.getId()}" class="btn btn-warning">게시글 삭제</a>
         <a href="javascript:window.history.back()" class="btn btn-info">뒤로가기</a>
         <a href="http://localhost:8080/api/v1/post" class="btn btn-info">처음으로</a>

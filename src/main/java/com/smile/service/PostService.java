@@ -15,7 +15,7 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.smile.entity.User.createUser;
+import static com.smile.entity.Post.createPost;
 
 @RequiredArgsConstructor
 @Service
@@ -44,12 +44,7 @@ public class PostService {
 
     @Transactional
     public void save(String title, String content) {
-        Post post = Post.builder()
-                .title(title)
-                .content(content)
-                .user(createUser())
-                .build();
-        postRepository.save(post);
+        postRepository.save(createPost(title, content));
     }
 
     @Transactional

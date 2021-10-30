@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.smile.entity.Comment.createComment;
 import static com.smile.entity.User.createUser;
 
 @RequiredArgsConstructor
@@ -23,10 +24,20 @@ public class CommentService {
 
     @Transactional(readOnly = true)
     public List<PostCommentResponseDTO> findComment(Long postId) {
-        Post post = postRepository.findById(postId).orElseThrow(() -> new PostNotFoundException("Post is Not Exist"));
+        Post post = findOne(postId);
         return commentRepository.findByPostAndUser(post, createUser()).stream()
                 .map(PostCommentResponseDTO::from)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void save(Long postId, String content) {
+        Post post = findOne(postId);
+        commentRepository.save(createComment(post, content));
+    }
+
+    public Post findOne(Long postId) {
+        return postRepository.findById(postId).orElseThrow(() -> new PostNotFoundException("Post is Not Exist"));
     }
 
 }
