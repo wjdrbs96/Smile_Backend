@@ -41,7 +41,7 @@ public class PostController {
 
     @GetMapping("/{postId}/return")
     public String updateReturn(@PathVariable Long postId, @RequestParam("check") int checkId, Model model) {
-        model.addAttribute("post", postService.findOne(postId));
+        model.addAttribute("post", postService.findOneAndIncreaseViews(postId));
         if (checkId == 1) {
             return "view";
         }

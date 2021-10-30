@@ -2,7 +2,7 @@ package com.smile.service;
 
 import com.smile.dto.PostCommentResponseDTO;
 import com.smile.entity.Post;
-import com.smile.error.post.PostNotFoundException;
+import com.smile.error.EntityNotFoundException;
 import com.smile.repository.CommentRepository;
 import com.smile.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,8 +36,8 @@ public class CommentService {
         commentRepository.save(createComment(post, content));
     }
 
-    public Post findOne(Long postId) {
-        return postRepository.findById(postId).orElseThrow(() -> new PostNotFoundException("Post is Not Exist"));
+    private Post findOne(Long postId) {
+        return postRepository.findById(postId).orElseThrow(() -> new EntityNotFoundException("Post is Not Exist"));
     }
 
 }
