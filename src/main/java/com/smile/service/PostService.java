@@ -3,6 +3,7 @@ package com.smile.service;
 import com.smile.dto.PostResponseDTO;
 import com.smile.entity.Post;
 import com.smile.entity.User;
+import com.smile.error.post.PostNotFoundException;
 import com.smile.error.user.UserNotFoundException;
 import com.smile.repository.PostRepository;
 import com.smile.repository.UserRepository;
@@ -31,16 +32,16 @@ public class PostService {
     }
 
     @Transactional(readOnly = true)
-    public List<PostResponseDTO> getPostAllByUserId() {
+    public List<PostResponseDTO> findAll() {
         // 로그인이 되어 있다 가정이라 1번 유저가 존재한다고 가정해서 1L 로 하드코딩
-        User user = userRepository.findById(1L).orElseThrow(() -> new UserNotFoundException("User Not Exist!"));
+        User user = userRepository.findById(1L).orElseThrow(() -> new UserNotFoundException("User is Not Exist!"));
         return postRepository.findAllByUser(user).stream()
                 .map(PostResponseDTO::from)
                 .collect(Collectors.toList());
     }
 
     @Transactional
-    public void create(String title, String content) {
+    public void save(String title, String content) {
         Post post = Post.builder()
                 .title(title)
                 .content(content)
@@ -58,4 +59,14 @@ public class PostService {
                 .build();
     }
 
+    @Transactional
+    public void update(Long postId, String title, String content) {
+        Post post = postRepository.findById(postId).orElseThrow(() -> new PostNotFoundException("Post is Not Exist!!"));
+        post.changePost(title, content);
+    }
+
+    public PostResponseDTO findOne(Long postId) {
+        Post post = postRepository.findById(postId).orElseThrow(() -> new PostNotFoundException("Post is Not Exist!!"));
+        return PostResponseDTO.from(post);
+    }
 }

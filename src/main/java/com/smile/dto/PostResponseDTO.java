@@ -13,6 +13,7 @@ public class PostResponseDTO {
     private Long id;
     private String username;
     private String title;
+    private String content;
     private LocalDateTime createdTime;
     private LocalDateTime lastModifiedTime;
 
@@ -21,6 +22,7 @@ public class PostResponseDTO {
                 .id(post.getId())
                 .username(post.getUser().getName())
                 .title(post.getTitle())
+                .content(post.getContent())
                 .createdTime(post.getCreatedTime())
                 .lastModifiedTime(post.getLastModifiedTime())
                 .build();
