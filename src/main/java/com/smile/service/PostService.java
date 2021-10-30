@@ -24,9 +24,9 @@ public class PostService {
     // 임시 코드 (나중에 삭제 예정)
     @PostConstruct
     public void init() {
-        User user = userRepository.save(new User("Gyunny", "wjdrbs966@naver.com"));
+        User user = userRepository.save(User.builder().email("wjdrbs966@naver.com").name("Gyunny").build());
         for (int i = 0; i < 5; ++i) {
-            postRepository.save(new Post("제목" + i, "내용" + i, user));
+            postRepository.save(Post.builder().title("제목" + i).content("내용" + i).user(user).build());
         }
     }
 
