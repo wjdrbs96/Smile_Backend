@@ -3,6 +3,10 @@ spring:
     url: jdbc:h2:mem:smile-db
     username: sa
     password:
+  mvc:
+    view:
+      prefix: /WEB-INF/
+      suffix: .jsp
 
   h2:
     console:
