@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -87,7 +87,8 @@
         </c:forEach>
     </table>
 
-    <a href="http://localhost:8080/post/write" class="btn btn-default pull-right">글쓰기</a>
+<%--  why not  <a href="create.jsp" class="btn btn-default pull-right">글쓰기</a>--%>
+    <a href="http://localhost:8080/api/v1/post/return" class="btn btn-default pull-right">글쓰기</a>
 
     <ul class="pagination">
         <c:forEach var="i" begin="1" end="${totalPage}" step="1">

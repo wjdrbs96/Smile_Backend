@@ -39,4 +39,23 @@ public class PostService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
+    public void create(String title, String content) {
+        Post post = Post.builder()
+                .title(title)
+                .content(content)
+                .user(createUser())
+                .build();
+        postRepository.save(post);
+    }
+
+    // 1번 유저의 정보 (로그인 되어 있다고 가정 하기에 세팅)
+    private User createUser() {
+        return User.builder()
+                .id(1L)
+                .email("wjdrbs966@naver.com")
+                .name("Gyunny")
+                .build();
+    }
+
 }
