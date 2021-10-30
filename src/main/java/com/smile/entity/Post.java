@@ -17,6 +17,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import static com.smile.entity.User.createUser;
+
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Getter
@@ -42,6 +44,14 @@ public class Post extends BaseEntity {
     public void changePost(String title, String content) {
         this.title = title;
         this.content = content;
+    }
+
+    public static Post createPost(String title, String content) {
+        return Post.builder()
+                .title(title)
+                .content(content)
+                .user(createUser())
+                .build();
     }
 
 }
