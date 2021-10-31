@@ -61,4 +61,10 @@ public class PostService {
         return PostResponseDTO.from(post);
     }
 
+    @Transactional
+    public void delete(Long postId) {
+        Post post = postRepository.findById(postId).orElseThrow(() -> new EntityNotFoundException("Post is Not Exist!!"));
+        postRepository.delete(post);
+    }
+
 }
