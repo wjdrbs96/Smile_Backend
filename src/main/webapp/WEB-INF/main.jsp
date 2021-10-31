@@ -85,7 +85,7 @@
         </c:forEach>
     </table>
 
-<%--  why not  <a href="create.jsp" class="btn btn-default pull-right">글쓰기</a>--%>
+<%--    <a href="create.jsp" class="btn btn-default pull-right">글쓰기</a>--%>
     <a href="http://localhost:8080/api/v1/post/return" class="btn btn-default pull-right">글쓰기</a>
 
     <ul class="pagination">
