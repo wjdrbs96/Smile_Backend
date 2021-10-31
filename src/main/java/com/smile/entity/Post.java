@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -37,6 +39,9 @@ public class Post extends BaseEntity {
     @Lob
     private String content;
 
+    @Enumerated(EnumType.STRING)
+    private Category category;
+
     private Long views;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -52,10 +57,11 @@ public class Post extends BaseEntity {
         this.views = views;
     }
 
-    public static Post createPost(String title, String content) {
+    public static Post createPost(String title, String content, Category category) {
         return Post.builder()
                 .title(title)
                 .content(content)
+                .category(category)
                 .user(createUser())
                 .build();
     }

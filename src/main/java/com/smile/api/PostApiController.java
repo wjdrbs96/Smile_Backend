@@ -1,5 +1,6 @@
 package com.smile.api;
 
+import com.smile.entity.Category;
 import com.smile.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -23,7 +24,7 @@ public class PostApiController {
     private final PostService postService;
 
     @GetMapping
-    public String main(@RequestParam(defaultValue = "1") int page,
+    public String find(@RequestParam(defaultValue = "1") int page,
                        @RequestParam(defaultValue = "7") int pageSize,
                        Model model) {
         PageRequest paging = PageRequest.of(page - 1, pageSize);
@@ -34,8 +35,9 @@ public class PostApiController {
 
     @PostMapping
     public String create(@RequestParam String title,
-                         @RequestParam String content) {
-        postService.save(title, content);
+                         @RequestParam String content,
+                         @RequestParam Category category) {
+        postService.save(title, content, category);
         return "redirect:/api/v1/post";
     }
 

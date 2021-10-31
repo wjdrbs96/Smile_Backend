@@ -1,5 +1,6 @@
 package com.smile.dto;
 
+import com.smile.entity.Category;
 import com.smile.entity.Post;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,6 +15,7 @@ public class PostResponseDTO {
     private String username;
     private String title;
     private String content;
+    private Category category;
     private Long views;
     private LocalDateTime createdTime;
     private LocalDateTime lastModifiedTime;
@@ -24,6 +26,7 @@ public class PostResponseDTO {
                 .username(post.getUser().getName())
                 .title(post.getTitle())
                 .content(post.getContent())
+                .category(post.getCategory())
                 .views(post.getViews())
                 .createdTime(post.getCreatedTime())
                 .lastModifiedTime(post.getLastModifiedTime())
