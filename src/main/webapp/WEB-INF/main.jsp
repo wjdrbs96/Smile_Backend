@@ -78,7 +78,7 @@
                     <a href="http://localhost:8080/post/${post.getId()}/return?check=1">${post.getTitle()}</a>
                 </th>
                 <th>${post.getContent()}</th>
-                <th>${post.getCategory()}</th>
+                <th>${post.getCategory().getCategoryKorean()}</th>
                 <th>${post.getViews()}</th>
                 <th>${post.getCreatedTime()}</th>
                 <th>${post.getLastModifiedTime()}</th>

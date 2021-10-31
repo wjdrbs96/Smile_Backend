@@ -56,6 +56,21 @@
                 </td>
             </tr>
             <tr>
+                <td>카테고리</td>
+                <td>
+                    <div id="margin" class="form-group">
+                        <label>
+                            <select name="category" class="form-control">
+                                <option value="BOOK">독서</option>
+                                <option value="LIFE">일상</option>
+                                <option value="STUDY">공부</option>
+                                <option value="TRAVEL">여행</option>
+                            </select>
+                        </label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
                 <td>작성자</td>
                 <td>${post.getUsername()}</td>
             </tr>

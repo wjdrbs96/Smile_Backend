@@ -51,9 +51,9 @@ public class PostService {
     }
 
     @Transactional
-    public void update(Long postId, String title, String content) {
+    public void update(Long postId, String title, String content, Category category) {
         Post post = findOne(postId);
-        post.changePost(title, content);
+        post.changePost(title, content, category);
     }
 
     public long count() {
