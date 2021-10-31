@@ -7,6 +7,7 @@ import com.smile.error.EntityNotFoundException;
 import com.smile.repository.PostRepository;
 import com.smile.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,15 +31,15 @@ public class PostService {
     @PostConstruct
     public void init() {
         User user = userRepository.save(User.builder().email("wjdrbs966@naver.com").name("Gyunny").build());
-        for (int i = 0; i < 5; ++i) {
+        for (int i = 1; i <= 25; ++i) {
             postRepository.save(Post.builder().title("제목" + i).content("내용" + i).views(0L).user(user).build());
         }
     }
 
-    public List<PostResponseDTO> findAll() {
+    public List<PostResponseDTO> findAllByUserOrderByIdDesc(PageRequest paging) {
         // 로그인이 되어 있다 가정이라 1번 유저가 존재한다고 가정해서 1L 로 하드코딩
         User user = userRepository.findById(1L).orElseThrow(() -> new EntityNotFoundException("User is Not Exist!"));
-        return postRepository.findAllByUser(user).stream()
+        return postRepository.findAllByUserOrderByIdDesc(user, paging).stream()
                 .map(PostResponseDTO::from)
                 .collect(Collectors.toList());
     }
@@ -52,6 +53,10 @@ public class PostService {
     public void update(Long postId, String title, String content) {
         Post post = postRepository.findById(postId).orElseThrow(() -> new EntityNotFoundException("Post is Not Exist!!"));
         post.changePost(title, content);
+    }
+
+    public long count() {
+        return postRepository.count();
     }
 
     @Transactional

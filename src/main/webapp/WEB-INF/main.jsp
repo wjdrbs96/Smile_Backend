@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +18,6 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
     <title>Smile Backend Gyunny</title>
 </head>
@@ -87,9 +87,9 @@
     <a href="http://localhost:8080/post/return" class="btn btn-default pull-right">글쓰기</a>
 
     <ul class="pagination">
-        <c:forEach var="i" begin="1" end="${totalPage}" step="1">
-            <li class=<c:if test='${i} == ${page} ? "active" : ""'/>>
-                <a href='/post/list?page=${i}&pageSize=${pageSize}'>${i}</a>
+        <c:forEach var="i" begin="1" end="${paging.getPageButtonSize()}" step="1">
+            <li class=<c:if test='${i} == ${paging.getPage()} ? "active" : ""'/>>
+                <a href='http://localhost:8080/api/v1/post?page=${i}&pageSize=${paging.getPageSize()}'>${i}</a>
             </li>
         </c:forEach>
     </ul>
