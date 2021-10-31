@@ -65,18 +65,16 @@
         </tr>
     </table>
 
-    <a class="btn btn-primary" href="http://localhost:8080/api/v1/post/${post.getId()}/return?check=2">수정</a>
+    <a class="btn btn-primary" href="http://localhost:8080/post/${post.getId()}/return?check=2">게시글 수정</a>
     <a href="http://localhost:8080/api/v1/post/${post.getId()}/comment" class="btn btn-warning">댓글보기</a>
-    <a href="http://localhost:8080/api/v1/post/${post.getId()}/comment/return" class="btn btn-warning">댓글쓰기</a>
+    <a href="http://localhost:8080/post/${post.getId()}/comment/return" class="btn btn-warning">댓글쓰기</a>
     <button class="btn btn-warning" id="post-delete" value="${post.getId()}">게시글 삭제</button>
     <a href="javascript:window.history.back()" class="btn btn-info">뒤로가기</a>
     <a href="http://localhost:8080/api/v1/post" class="btn btn-info">처음으로</a>
-
 </div>
 
 <script>
-    $("#post-delete").click(function (event) {
-        event.preventDefault();
+    $("#post-delete").click(function () {
         const postId = $(this).attr('value')
         $.ajax({
             url: 'http://localhost:8080/api/v1/post/' + postId,
