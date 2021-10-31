@@ -1,6 +1,7 @@
 package com.smile.service;
 
 import com.smile.dto.PostResponseDTO;
+import com.smile.entity.Category;
 import com.smile.entity.Post;
 import com.smile.entity.User;
 import com.smile.error.EntityNotFoundException;
@@ -32,7 +33,7 @@ public class PostService {
     public void init() {
         User user = userRepository.save(User.builder().email("wjdrbs966@naver.com").name("Gyunny").build());
         for (int i = 1; i <= 25; ++i) {
-            postRepository.save(Post.builder().title("제목" + i).content("내용" + i).views(0L).user(user).build());
+            postRepository.save(Post.builder().title("제목" + i).content("내용" + i).views(0L).category(Category.BOOK).user(user).build());
         }
     }
 
@@ -45,13 +46,13 @@ public class PostService {
     }
 
     @Transactional
-    public void save(String title, String content) {
-        postRepository.save(createPost(title, content));
+    public void save(String title, String content, Category category) {
+        postRepository.save(createPost(title, content, category));
     }
 
     @Transactional
     public void update(Long postId, String title, String content) {
-        Post post = postRepository.findById(postId).orElseThrow(() -> new EntityNotFoundException("Post is Not Exist!!"));
+        Post post = findOne(postId);
         post.changePost(title, content);
     }
 
@@ -61,15 +62,19 @@ public class PostService {
 
     @Transactional
     public PostResponseDTO findOneAndIncreaseViews(Long postId) {
-        Post post = postRepository.findById(postId).orElseThrow(() -> new EntityNotFoundException("Post is Not Exist!!"));
+        Post post = findOne(postId);
         post.increaseViews(post.getViews() + INCREASE_VIEWS);
         return PostResponseDTO.from(post);
     }
 
     @Transactional
     public void delete(Long postId) {
-        Post post = postRepository.findById(postId).orElseThrow(() -> new EntityNotFoundException("Post is Not Exist!!"));
+        Post post = findOne(postId);
         postRepository.delete(post);
+    }
+
+    private Post findOne(Long postId) {
+        return postRepository.findById(postId).orElseThrow(() -> new EntityNotFoundException("Post is Not Exist!!"));
     }
 
 }

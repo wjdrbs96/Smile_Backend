@@ -64,6 +64,7 @@
             <th>작성자</th>
             <th>제목</th>
             <th>내용</th>
+            <th>카테고리</th>
             <th>조회수</th>
             <th>수정시간</th>
             <th>작성시간</th>
@@ -77,6 +78,7 @@
                     <a href="http://localhost:8080/post/${post.getId()}/return?check=1">${post.getTitle()}</a>
                 </th>
                 <th>${post.getContent()}</th>
+                <th>${post.getCategory()}</th>
                 <th>${post.getViews()}</th>
                 <th>${post.getCreatedTime()}</th>
                 <th>${post.getLastModifiedTime()}</th>
