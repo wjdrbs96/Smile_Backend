@@ -43,13 +43,16 @@
         </tr>
 
         <c:forEach items="${comment}" var="comment">
-            <tr>
-                <th>${comment.getCommentId()}</th>
-                <th>${comment.getUsername()}</th>
-                <th><a href="http://localhost:8080">${comment.getContent()}</a></th>
-                <th>${comment.getCreatedTime()}</th>
-                <th><a href="http://localhost:8080">삭제</a></th>
-            </tr>
+            <form action="http://localhost:8080/api/v1/post/${comment.getPostId()}/comment/${comment.getCommentId()}" method="POST">
+                <input type="hidden" name="_method" value="DELETE"/>
+                <tr>
+                    <th>${comment.getCommentId()}</th>
+                    <th>${comment.getUsername()}</th>
+                    <th><a href="http://localhost:8080">${comment.getContent()}</a></th>
+                    <th>${comment.getCreatedTime()}</th>
+                    <th><button type="submit" class="btn btn-primary">삭제</button></th>
+                </tr>
+            </form>
         </c:forEach>
     </table>
 

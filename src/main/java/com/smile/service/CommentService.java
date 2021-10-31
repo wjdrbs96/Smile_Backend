@@ -1,6 +1,7 @@
 package com.smile.service;
 
 import com.smile.dto.PostCommentResponseDTO;
+import com.smile.entity.Comment;
 import com.smile.entity.Post;
 import com.smile.error.EntityNotFoundException;
 import com.smile.repository.CommentRepository;
@@ -34,6 +35,12 @@ public class CommentService {
     public void save(Long postId, String content) {
         Post post = findOne(postId);
         commentRepository.save(createComment(post, content));
+    }
+
+    @Transactional
+    public void deleteComment(Long commentId) {
+        Comment comment = commentRepository.findById(commentId).orElseThrow(() -> new EntityNotFoundException("Comment is Not Exist"));
+        commentRepository.delete(comment);
     }
 
     private Post findOne(Long postId) {
