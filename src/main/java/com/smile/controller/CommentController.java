@@ -10,10 +10,4 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class CommentController {
 
-    @GetMapping("/{postId}/comment/return")
-    public String returnCommentView(@PathVariable Long postId, Model model) {
-        model.addAttribute("postId", postId);
-        return "writeComment";
-    }
-
 }
