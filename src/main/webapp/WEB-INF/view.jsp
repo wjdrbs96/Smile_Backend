@@ -33,59 +33,45 @@
 
     <h1>게시글 보기</h1>
 
-    <table class="table table-bordered table-condensed">
-        <tr>
-            <td>게시글 번호</td>
-            <td>${post.getId()}</td>
-        </tr>
-        <tr>
-            <td>글 제목</td>
-            <td>
-                <label>
-                    <textarea class="form-control" name="title" rows="1" readonly>${post.getTitle()}</textarea>
-                </label>
-            </td>
-        </tr>
-        <tr>
-            <td>글 내용</td>
-            <td>
-                <label>
-                    <textarea class="form-control" name="content" rows="10" readonly>${post.getContent()}</textarea>
-                </label>
-            </td>
-        </tr>
-        <tr>
-            <td>작성자</td>
-            <td>${post.getUsername()}</td>
-        </tr>
-        <tr>
-            <td>작성시간</td>
-            <td>${post.getCreatedTime()}</td>
-        </tr>
-    </table>
+    <form action="http://localhost:8080/api/v1/post/${post.getId()}" method="POST">
+        <input type="hidden" name="_method" value="DELETE"/>
+        <table class="table table-bordered table-condensed">
+            <tr>
+                <td>게시글 번호</td>
+                <td>${post.getId()}</td>
+            </tr>
+            <tr>
+                <td>글 제목</td>
+                <td>
+                    <label>
+                        <textarea class="form-control" name="title" rows="1" readonly>${post.getTitle()}</textarea>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>글 내용</td>
+                <td>
+                    <label>
+                        <textarea class="form-control" name="content" rows="10" readonly>${post.getContent()}</textarea>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>작성자</td>
+                <td>${post.getUsername()}</td>
+            </tr>
+            <tr>
+                <td>작성시간</td>
+                <td>${post.getCreatedTime()}</td>
+            </tr>
+        </table>
 
-    <a class="btn btn-primary" href="http://localhost:8080/post/${post.getId()}/return?check=2">게시글 수정</a>
-    <a href="http://localhost:8080/api/v1/post/${post.getId()}/comment" class="btn btn-warning">댓글보기</a>
-    <button class="btn btn-warning" id="post-delete" value="${post.getId()}">게시글 삭제</button>
-    <a href="javascript:window.history.back()" class="btn btn-info">뒤로가기</a>
-    <a href="http://localhost:8080/api/v1/post" class="btn btn-info">처음으로</a>
+        <a class="btn btn-primary" href="http://localhost:8080/post/${post.getId()}/return?check=2">게시글 수정</a>
+        <a href="http://localhost:8080/api/v1/post/${post.getId()}/comment" class="btn btn-warning">댓글보기</a>
+        <button type="submit" class="btn btn-warning">게시글 삭제</button>
+        <a href="javascript:window.history.back()" class="btn btn-info">뒤로가기</a>
+        <a href="http://localhost:8080/api/v1/post" class="btn btn-info">처음으로</a>
+    </form>
 </div>
-
-<script>
-    $("#post-delete").click(function () {
-        const postId = $(this).attr('value')
-        $.ajax({
-            url: 'http://localhost:8080/api/v1/post/' + postId,
-            type: 'DELETE',
-            success: function (data) {
-                location.replace("http://localhost:8080/api/v1/post")
-                console.log(data)
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                console.log(xhr)
-            }
-        })
-    })
-</script>
 </body>
 </html>
