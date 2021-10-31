@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/post")
@@ -42,10 +41,9 @@ public class PostApiController {
     }
 
     @DeleteMapping("/{postId}")
-    @ResponseBody
     public String delete(@PathVariable Long postId) {
         postService.delete(postId);
-        return "success";
+        return "redirect:/api/v1/post";
     }
 
 }
