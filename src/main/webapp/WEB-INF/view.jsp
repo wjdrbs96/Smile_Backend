@@ -57,6 +57,10 @@
                 </td>
             </tr>
             <tr>
+                <td>카테고리</td>
+                <td><input type="text" value="${post.getCategory().getCategoryKorean()}" name="category" readonly/></td>
+            </tr>
+            <tr>
                 <td>작성자</td>
                 <td>${post.getUsername()}</td>
             </tr>

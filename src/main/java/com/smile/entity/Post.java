@@ -48,9 +48,10 @@ public class Post extends BaseEntity {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public void changePost(String title, String content) {
+    public void changePost(String title, String content, Category category) {
         this.title = title;
         this.content = content;
+        this.category = category;
     }
 
     public void increaseViews(Long views) {

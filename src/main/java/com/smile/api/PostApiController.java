@@ -1,6 +1,7 @@
 package com.smile.api;
 
 import com.smile.entity.Category;
+import com.smile.entity.Post;
 import com.smile.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -44,8 +45,9 @@ public class PostApiController {
     @PutMapping("/{postId}")
     public String update(@PathVariable Long postId,
                          @RequestParam String title,
-                         @RequestParam String content) {
-        postService.update(postId, title, content);
+                         @RequestParam String content,
+                         @RequestParam Category category) {
+        postService.update(postId, title, content, category);
         return "redirect:/api/v1/post";
     }
 
