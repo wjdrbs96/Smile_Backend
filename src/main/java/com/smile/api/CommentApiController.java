@@ -4,6 +4,7 @@ import com.smile.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +30,12 @@ public class CommentApiController {
     @PostMapping("/{postId}/comment")
     public String writePostComment(@PathVariable Long postId, @RequestParam String content) {
         commentService.save(postId, content);
+        return MessageFormat.format("redirect:/api/v1/post/{0}/comment", postId);
+    }
+
+    @DeleteMapping("/{postId}/comment/{commentId}")
+    public String deleteComment(@PathVariable Long postId, @PathVariable Long commentId) {
+        commentService.deleteComment(commentId);
         return MessageFormat.format("redirect:/api/v1/post/{0}/comment", postId);
     }
 
