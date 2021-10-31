@@ -76,7 +76,7 @@
                 <th>${post.getId()}</th>
                 <th>${post.getUsername()}</th>
                 <th>
-                    <a href="http://localhost:8080/api/v1/post/${post.getId()}/return?check=1">${post.getTitle()}</a>
+                    <a href="http://localhost:8080/post/${post.getId()}/return?check=1">${post.getTitle()}</a>
                 </th>
                 <th>${post.getViews()}</th>
                 <th>${post.getCreatedTime()}</th>
@@ -85,8 +85,7 @@
         </c:forEach>
     </table>
 
-<%--    <a href="create.jsp" class="btn btn-default pull-right">글쓰기</a>--%>
-    <a href="http://localhost:8080/api/v1/post/return" class="btn btn-default pull-right">글쓰기</a>
+    <a href="http://localhost:8080/post/return" class="btn btn-default pull-right">글쓰기</a>
 
     <ul class="pagination">
         <c:forEach var="i" begin="1" end="${totalPage}" step="1">
