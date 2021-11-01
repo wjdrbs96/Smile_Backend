@@ -1,35 +1,35 @@
 package com.smile.api;
 
+import com.smile.dto.PostResponseDTO;
 import com.smile.entity.Category;
+import com.smile.entity.Paging;
 import com.smile.service.PostService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import static com.smile.entity.Paging.createPaging;
-
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/post")
+@RequestMapping("/post")
 @Controller
 public class PostApiController {
 
     private final PostService postService;
 
     @GetMapping
-    public String find(@RequestParam(defaultValue = "1") int page,
-                       @RequestParam(defaultValue = "7") int pageSize,
-                       Model model) {
-        PageRequest paging = PageRequest.of(page - 1, pageSize);
-        model.addAttribute("post", postService.findAllByUserOrderByIdDesc(paging));
-        model.addAttribute("paging", createPaging(page, pageSize, (postService.count() / pageSize) + 1));
+    public String find(Pageable pageable, Model model) {
+        Page<PostResponseDTO> postResponseDTOPage = postService.findAll(pageable);
+        model.addAttribute("post", postResponseDTOPage.getContent());
+        model.addAttribute("paging", postResponseDTOPage);
         return "main";
     }
 
@@ -45,7 +45,8 @@ public class PostApiController {
     public String update(@PathVariable Long postId,
                          @RequestParam String title,
                          @RequestParam String content,
-                         @RequestParam Category category) {
+                         @RequestParam Category category,
+                         @ModelAttribute("userId") Long userId) {
         postService.update(postId, title, content, category);
         return "redirect:/api/v1/post";
     }

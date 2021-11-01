@@ -15,9 +15,9 @@ import java.time.LocalDateTime;
 public abstract class BaseEntity {
 
     @CreatedDate
-    protected LocalDateTime createdTime = LocalDateTime.now();
+    protected LocalDateTime createdTime;
 
     @LastModifiedDate
-    protected LocalDateTime lastModifiedTime = LocalDateTime.now();
+    protected LocalDateTime lastModifiedTime;
 
 }

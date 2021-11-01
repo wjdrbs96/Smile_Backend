@@ -42,15 +42,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/api/v1/post">Home</a>
+                    <a class="nav-link" href="http://localhost:8080/post">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080/api/v1/user">My Page</a>
+                    <a class="nav-link" href="http://localhost:8080/user">My Page</a>
                 </li>
             </ul>
         </div>
     </nav>
-    <form action="http://localhost:8080/api/v1/post/search" method="post" class="form-inline">
+    <form action="http://localhost:8080/post/search" method="post" class="form-inline">
         <div id="margin" class="form-group">
             <select name="type" class="form-control">
                 <option value="title">제목</option>
@@ -92,9 +92,9 @@
     <a href="http://localhost:8080/post/return" class="btn btn-default pull-right">글쓰기</a>
 
     <ul class="pagination">
-        <c:forEach var="i" begin="1" end="${paging.getPageButtonSize()}" step="1">
-            <li class=<c:if test='${i} == ${paging.getPage()} ? "active" : ""'/>>
-                <a href='http://localhost:8080/api/v1/post?page=${i}&pageSize=${paging.getPageSize()}'>${i}</a>
+        <c:forEach var="i" begin="1" end="${paging.getTotalPages()}" step="1">
+            <li class=<c:if test='${i} == ${paging.getPageable().getPageNumber()} ? "active" : ""'/>>
+                <a href='http://localhost:8080/post?page=${i}&size=${paging.getSize()}'>${i}</a>
             </li>
         </c:forEach>
     </ul>

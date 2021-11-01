@@ -43,7 +43,7 @@
         </tr>
 
         <c:forEach items="${comment}" var="comment">
-            <form action="http://localhost:8080/api/v1/post/${comment.getPostId()}/comment/${comment.getCommentId()}" method="POST">
+            <form action="http://localhost:8080/post/${comment.getPostId()}/comment/${comment.getCommentId()}" method="POST">
                 <input type="hidden" name="_method" value="DELETE"/>
                 <tr>
                     <th>${comment.getCommentId()}</th>
@@ -62,7 +62,7 @@
 
 <div class="container">
     <h1>댓글 등록</h1>
-    <form action="http://localhost:8080/api/v1/post/${postId}/comment" method="POST">
+    <form action="http://localhost:8080/post/${postId}/comment" method="POST">
         <table class="table table-bordered table-condensed">
             <tr>
                 <td class="mid">댓글</td>

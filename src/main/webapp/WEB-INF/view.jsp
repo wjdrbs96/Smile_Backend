@@ -33,7 +33,7 @@
 
     <h1>게시글 보기</h1>
 
-    <form action="http://localhost:8080/api/v1/post/${post.getId()}" method="POST">
+    <form action="http://localhost:8080/post/${post.getId()}" method="POST">
         <input type="hidden" name="_method" value="DELETE"/>
         <table class="table table-bordered table-condensed">
             <tr>
@@ -71,10 +71,10 @@
         </table>
 
         <a class="btn btn-primary" href="http://localhost:8080/post/${post.getId()}/return?check=2">게시글 수정</a>
-        <a href="http://localhost:8080/api/v1/post/${post.getId()}/comment" class="btn btn-warning">댓글보기</a>
+        <a href="http://localhost:8080/post/${post.getId()}/comment" class="btn btn-warning">댓글보기</a>
         <button type="submit" class="btn btn-warning">게시글 삭제</button>
         <a href="javascript:window.history.back()" class="btn btn-info">뒤로가기</a>
-        <a href="http://localhost:8080/api/v1/post" class="btn btn-info">처음으로</a>
+        <a href="http://localhost:8080/post" class="btn btn-info">처음으로</a>
     </form>
 </div>
 </body>

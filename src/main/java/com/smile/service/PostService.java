@@ -8,7 +8,9 @@ import com.smile.error.EntityNotFoundException;
 import com.smile.repository.PostRepository;
 import com.smile.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,6 +48,12 @@ public class PostService {
                 .collect(Collectors.toList());
     }
 
+    public Page<PostResponseDTO> findAll(Pageable pageable) {
+        User user = userService.findOne(1L);
+        return postRepository.findByUser(user, pageable)
+                .map(PostResponseDTO::from);
+    }
+
     @Transactional
     public void save(String title, String content, Category category) {
         postRepository.save(createPost(title, content, category));
@@ -57,13 +65,10 @@ public class PostService {
         post.changePost(title, content, category);
     }
 
-    public long count() {
-        return postRepository.count();
-    }
-
     @Transactional
     public PostResponseDTO findOneAndIncreaseViews(Long postId) {
         Post post = findOne(postId);
+        // 메소드가 두 가지 일을 같이 하는 듯
         post.increaseViews(post.getViews() + INCREASE_VIEWS);
         return PostResponseDTO.from(post);
     }
@@ -79,6 +84,7 @@ public class PostService {
     }
 
     public List<PostResponseDTO> findSearch(String type, String keyword) {
+        // 검색 type 으로 나눠야함
         User user = userService.findOne(1L);
         return postRepository.findAllByTitleContainingAndUser(keyword, user).stream()
                 .map(PostResponseDTO::from)

@@ -33,7 +33,7 @@
 
     <h1>게시글 등록</h1>
 
-    <form action="http://localhost:8080/api/v1/post" method="POST">
+    <form action="http://localhost:8080/post" method="POST">
         <table class="table table-bordered table-condensed">
             <tr>
                 <td>글 제목</td>
