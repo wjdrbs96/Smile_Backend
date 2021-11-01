@@ -33,7 +33,6 @@ public class Post extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title")
     private String title;
 
     @Lob
@@ -42,10 +41,10 @@ public class Post extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Category category;
 
-    private Long views;
+    private Long views;  // 조회 수
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn
     private User user;
 
     public void changePost(String title, String content, Category category) {

@@ -18,7 +18,7 @@
     <hr>
     <form method="get">
         <div>
-            <a href="http://localhost:8080" class="btn btn-info">다시 돌아가기</a>
+            <a href="javascript:window.history.back()" class="btn btn-info">뒤로가기</a>
         </div>
     </form>
 </div>

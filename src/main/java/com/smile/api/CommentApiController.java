@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.text.MessageFormat;
 
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/post")
+@RequestMapping("/post")
 @Controller
 public class CommentApiController {
 
@@ -29,7 +29,7 @@ public class CommentApiController {
 
     @PostMapping("/{postId}/comment")
     public String writePostComment(@PathVariable Long postId, @RequestParam String content) {
-        commentService.save(postId, content);
+        commentService.saveComment(postId, content);
         return MessageFormat.format("redirect:/api/v1/post/{0}/comment", postId);
     }
 

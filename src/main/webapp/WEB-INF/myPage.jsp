@@ -35,27 +35,26 @@
     <h1>My Page</h1>
     <hr/>
 
-    <form action="http://localhost:8080" method="post">
-        <div class="form-group">
-            <label>사용자 닉네임</label>
-            <label>
-                <input type="text" class="form-control" name="loginId" value="${mypage.getUsername()}" readonly>
-            </label>
-        </div>
-        <div class="form-group">
-            <label>전체 게시글 수</label>
-            <label>
-                <input type="text" class="form-control" name="password" value="${mypage.getPostAllCount()}" readonly>
-            </label>
-        </div>
-        <div class="form-group">
-            <label>전체 조회 수</label>
-            <label>
-                <input type="text" class="form-control" name="name" value="${mypage.getPostViewsCount()}" readonly>
-            </label>
-        </div>
-        <a href="javascript:window.history.back()" class="btn btn-info">게시글로</a>
-    </form>
+    <div class="form-group">
+        <label>사용자 닉네임</label>
+        <label>
+            <input type="text" class="form-control" name="loginId" value="${mypage.getUsername()}" readonly>
+        </label>
+    </div>
+    <div class="form-group">
+        <label>전체 게시글 수</label>
+        <label>
+            <input type="text" class="form-control" name="password" value="${mypage.getPostAllCount()}" readonly>
+        </label>
+    </div>
+    <div class="form-group">
+        <label>전체 조회 수</label>
+        <label>
+            <input type="text" class="form-control" name="name" value="${mypage.getPostViewsCount()}" readonly>
+        </label>
+    </div>
+
+    <a href="javascript:window.history.back()" class="btn btn-info">게시글로</a>
 
 </div>
 </body>

@@ -8,7 +8,9 @@ import com.smile.error.EntityNotFoundException;
 import com.smile.repository.PostRepository;
 import com.smile.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +27,7 @@ public class PostService {
 
     private static final Long INCREASE_VIEWS = 1L;
 
+    private final UserService userService;
     private final PostRepository postRepository;
     private final UserRepository userRepository;
 
@@ -39,10 +42,16 @@ public class PostService {
 
     public List<PostResponseDTO> findAllByUserOrderByIdDesc(PageRequest paging) {
         // 로그인이 되어 있다 가정이라 1번 유저가 존재한다고 가정해서 1L 로 하드코딩
-        User user = userRepository.findById(1L).orElseThrow(() -> new EntityNotFoundException("User is Not Exist!"));
+        User user = userService.findOne(1L);
         return postRepository.findAllByUserOrderByIdDesc(user, paging).stream()
                 .map(PostResponseDTO::from)
                 .collect(Collectors.toList());
+    }
+
+    public Page<PostResponseDTO> findAll(Pageable pageable) {
+        User user = userService.findOne(1L);
+        return postRepository.findByUser(user, pageable)
+                .map(PostResponseDTO::from);
     }
 
     @Transactional
@@ -56,13 +65,10 @@ public class PostService {
         post.changePost(title, content, category);
     }
 
-    public long count() {
-        return postRepository.count();
-    }
-
     @Transactional
     public PostResponseDTO findOneAndIncreaseViews(Long postId) {
         Post post = findOne(postId);
+        // 메소드가 두 가지 일을 같이 하는 듯
         post.increaseViews(post.getViews() + INCREASE_VIEWS);
         return PostResponseDTO.from(post);
     }
@@ -73,8 +79,16 @@ public class PostService {
         postRepository.delete(post);
     }
 
-    private Post findOne(Long postId) {
+    public Post findOne(Long postId) {
         return postRepository.findById(postId).orElseThrow(() -> new EntityNotFoundException("Post is Not Exist!!"));
+    }
+
+    public List<PostResponseDTO> findSearch(String type, String keyword) {
+        // 검색 type 으로 나눠야함
+        User user = userService.findOne(1L);
+        return postRepository.findAllByTitleContainingAndUser(keyword, user).stream()
+                .map(PostResponseDTO::from)
+                .collect(Collectors.toList());
     }
 
 }
