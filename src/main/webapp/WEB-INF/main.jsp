@@ -42,7 +42,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="http://localhost:8080">Home</a>
+                    <a class="nav-link" href="http://localhost:8080/api/v1/post">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/api/v1/user">My Page</a>
                 </li>
             </ul>
         </div>
