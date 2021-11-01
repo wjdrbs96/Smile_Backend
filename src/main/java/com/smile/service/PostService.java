@@ -25,6 +25,7 @@ public class PostService {
 
     private static final Long INCREASE_VIEWS = 1L;
 
+    private final UserService userService;
     private final PostRepository postRepository;
     private final UserRepository userRepository;
 
@@ -39,7 +40,7 @@ public class PostService {
 
     public List<PostResponseDTO> findAllByUserOrderByIdDesc(PageRequest paging) {
         // 로그인이 되어 있다 가정이라 1번 유저가 존재한다고 가정해서 1L 로 하드코딩
-        User user = userRepository.findById(1L).orElseThrow(() -> new EntityNotFoundException("User is Not Exist!"));
+        User user = userService.findOne(1L);
         return postRepository.findAllByUserOrderByIdDesc(user, paging).stream()
                 .map(PostResponseDTO::from)
                 .collect(Collectors.toList());
@@ -73,8 +74,15 @@ public class PostService {
         postRepository.delete(post);
     }
 
-    private Post findOne(Long postId) {
+    public Post findOne(Long postId) {
         return postRepository.findById(postId).orElseThrow(() -> new EntityNotFoundException("Post is Not Exist!!"));
+    }
+
+    public List<PostResponseDTO> findSearch(String type, String keyword) {
+        User user = userService.findOne(1L);
+        return postRepository.findAllByTitleContainingAndUser(keyword, user).stream()
+                .map(PostResponseDTO::from)
+                .collect(Collectors.toList());
     }
 
 }

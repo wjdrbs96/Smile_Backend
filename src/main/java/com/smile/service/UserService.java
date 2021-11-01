@@ -18,8 +18,12 @@ public class UserService {
     private final PostRepository postRepository;
 
     public UserMyPageResponseDTO findMyPage() {
-        User user = userRepository.findById(1L).orElseThrow(() -> new EntityNotFoundException("User is Not Exist!!"));
+        User user = findOne(1L);
         return UserMyPageResponseDTO.from(user.getName(), postRepository.findAllByUserPostCount(user), postRepository.findAllByUserViewsCount(user));
+    }
+
+    public User findOne(Long userId) {
+        return userRepository.findById(1L).orElseThrow(() -> new EntityNotFoundException("User is Not Exist!!"));
     }
 
 }

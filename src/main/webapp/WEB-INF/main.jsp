@@ -50,13 +50,13 @@
             </ul>
         </div>
     </nav>
-    <form method="post" class="form-inline">
+    <form action="http://localhost:8080/api/v1/post/search" method="post" class="form-inline">
         <div id="margin" class="form-group">
-            <select name="select" class="form-control">
+            <select name="type" class="form-control">
                 <option value="title">제목</option>
-                <option value="nickname">작성자</option>
+                <option value="category">카테고리</option>
             </select>
-            <input type="text" size=20 class="form-control" name="search"  placeholder="검색">
+            <input type="text" size=20 class="form-control" name="keyword" placeholder="검색">
             <button type="submit" class="btn btn-primary">조회</button>
         </div>
     </form>

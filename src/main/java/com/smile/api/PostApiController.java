@@ -1,7 +1,6 @@
 package com.smile.api;
 
 import com.smile.entity.Category;
-import com.smile.entity.Post;
 import com.smile.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -55,6 +54,14 @@ public class PostApiController {
     public String delete(@PathVariable Long postId) {
         postService.delete(postId);
         return "redirect:/api/v1/post";
+    }
+
+    @PostMapping("/search")
+    public String search(@RequestParam String type,
+                         @RequestParam String keyword,
+                         Model model) {
+        model.addAttribute("post", postService.findSearch(type, keyword));
+        return "main";
     }
 
 }
