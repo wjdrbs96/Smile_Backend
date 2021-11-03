@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    Page<Post> findByUser(User user, Pageable pageable);
+    Page<Post> findByUserOrderByIdDesc(User user, Pageable pageable);
 
     Long countByUser(User user);
 

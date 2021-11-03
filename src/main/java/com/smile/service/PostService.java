@@ -1,8 +1,8 @@
 package com.smile.service;
 
-import com.smile.dto.PostResponseDTO;
 import com.smile.dto.request.PostCreateRequestDTO;
 import com.smile.dto.request.PostUpdateRequestDTO;
+import com.smile.dto.response.PostResponseDTO;
 import com.smile.entity.Category;
 import com.smile.entity.Post;
 import com.smile.entity.User;
@@ -11,7 +11,6 @@ import com.smile.repository.PostRepository;
 import com.smile.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,7 +41,7 @@ public class PostService {
 
     public Page<PostResponseDTO> findAll(Pageable pageable, Long userId) {
         User user = userService.findOne(userId);
-        return postRepository.findByUser(user, pageable)
+        return postRepository.findByUserOrderByIdDesc(user, pageable)
                 .map(PostResponseDTO::from);
     }
 

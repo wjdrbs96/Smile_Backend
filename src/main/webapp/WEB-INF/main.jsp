@@ -94,7 +94,7 @@
     <ul class="pagination">
         <c:forEach var="i" begin="1" end="${paging.getTotalPages()}" step="1">
             <li class=<c:if test='${i} == ${paging.getPageable().getPageNumber()} ? "active" : ""'/>>
-                <a href='http://localhost:8080/post?page=${i}&size=${paging.getSize()}'>${i}</a>
+                <a href='http://localhost:8080/post?page=${i - 1}&size=${paging.getSize()}'>${i}</a>
             </li>
         </c:forEach>
     </ul>
