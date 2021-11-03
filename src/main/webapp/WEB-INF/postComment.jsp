@@ -43,7 +43,7 @@
         </tr>
 
         <c:forEach items="${comment}" var="comment">
-            <form action="http://localhost:8080/post/${comment.getPostId()}/comment/${comment.getCommentId()}" method="POST">
+            <form action="/post/${comment.getPostId()}/comment/${comment.getCommentId()}" method="POST">
                 <input type="hidden" name="_method" value="DELETE"/>
                 <tr>
                     <th>${comment.getCommentId()}</th>
@@ -56,13 +56,13 @@
         </c:forEach>
     </table>
 
-    <a href="http://localhost:8080/post/${postId}/return?check=1" class="btn btn-info">게시글 보러가기</a>
+    <a href="/post/${postId}/return?check=1" class="btn btn-info">게시글 보러가기</a>
     <a href="javascript:window.history.back()" class="btn btn-info">뒤로가기</a>
 </div>
 
 <div class="container">
     <h1>댓글 등록</h1>
-    <form action="http://localhost:8080/post/${postId}/comment" method="POST">
+    <form action="/post/${postId}/comment" method="POST">
         <table class="table table-bordered table-condensed">
             <tr>
                 <td class="mid">댓글</td>

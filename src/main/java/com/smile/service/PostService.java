@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @Service
 public class PostService {
 
-    private static final Long INCREASE_VIEWS = 1L;
+    private static final long INCREASE_VIEWS = 1L;
 
     private final UserService userService;
     private final PostRepository postRepository;
