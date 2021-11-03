@@ -28,7 +28,7 @@
                 <td>글 제목</td>
                 <td>
                     <label>
-                        <textarea class="form-control" name="title" rows="1">${post.getTitle()}</textarea>
+                        <textarea class="form-control" name="title" rows="1" required>${post.getTitle()}</textarea>
                     </label>
                 </td>
             </tr>
@@ -36,7 +36,7 @@
                 <td>글 내용</td>
                 <td>
                     <label>
-                        <textarea class="form-control" name="content" rows="10">${post.getContent()}</textarea>
+                        <textarea class="form-control" name="content" rows="10" required>${post.getContent()}</textarea>
                     </label>
                 </td>
             </tr>

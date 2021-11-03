@@ -12,7 +12,7 @@ import static com.smile.entity.User.createUser;
  */
 @AllArgsConstructor
 @Getter
-public class PostCreateRequestDTO {
+public class PostSaveRequestDTO {
     private String title;
     private String content;
     private Category category;

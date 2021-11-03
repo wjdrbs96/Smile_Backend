@@ -53,7 +53,7 @@
                 <td class="mid">댓글</td>
                 <td>
                     <label>
-                        <textarea class="form-control" name="content" rows="4"></textarea>
+                        <textarea class="form-control" name="content" rows="4" required></textarea>
                     </label>
                 </td>
             </tr>

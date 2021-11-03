@@ -24,7 +24,7 @@
                 <td>글 제목</td>
                 <td>
                     <label>
-                        <textarea class="form-control" name="title" rows="1"></textarea>
+                        <textarea class="form-control" name="title" rows="1" required></textarea>
                     </label>
                 </td>
             </tr>
@@ -32,7 +32,7 @@
                 <td>글 내용</td>
                 <td>
                     <label>
-                        <textarea class="form-control" name="content" rows="10"></textarea>
+                        <textarea class="form-control" name="content" rows="10" required></textarea>
                     </label>
                 </td>
             </tr>
