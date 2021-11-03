@@ -57,13 +57,4 @@ public class Post extends BaseEntity {
         this.views = views;
     }
 
-    public static Post createPost(String title, String content, Category category) {
-        return Post.builder()
-                .title(title)
-                .content(content)
-                .category(category)
-                .user(createUser())
-                .build();
-    }
-
 }
