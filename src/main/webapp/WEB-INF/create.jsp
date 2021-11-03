@@ -33,7 +33,7 @@
 
     <h1>게시글 등록</h1>
 
-    <form id="createPost" action="http://localhost:8080/post" method="post">
+    <form action="http://localhost:8080/post" method="post">
         <table class="table table-bordered table-condensed">
             <tr>
                 <td>글 제목</td>
@@ -68,7 +68,7 @@
             </tr>
         </table>
 
-        <button type="submit" onclick="ajax_send()" class="btn btn-primary">등록</button>
+        <button type="submit" class="btn btn-primary">등록</button>
         <a href="javascript:window.history.back()" class="btn btn-info">돌아가기</a>
     </form>
 </div>
