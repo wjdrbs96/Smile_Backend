@@ -1,6 +1,7 @@
 package com.smile.controller;
 
 import com.smile.dto.PostResponseDTO;
+import com.smile.dto.request.PostCreateRequestDTO;
 import com.smile.entity.Category;
 import com.smile.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +38,7 @@ public class PostController {
     public String create(@RequestParam String title,
                          @RequestParam String content,
                          @RequestParam Category category) {
-        //postService.save(postCreateRequestDTO);
+        postService.save(new PostCreateRequestDTO(title, content, category));
         return "redirect:/post";
     }
 
