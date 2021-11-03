@@ -1,4 +1,4 @@
-package com.smile.dto;
+package com.smile.dto.response;
 
 import com.smile.entity.Comment;
 import com.smile.entity.Post;

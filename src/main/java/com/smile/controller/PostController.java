@@ -1,13 +1,14 @@
 package com.smile.controller;
 
-import com.smile.dto.PostResponseDTO;
 import com.smile.dto.request.PostCreateRequestDTO;
 import com.smile.dto.request.PostUpdateRequestDTO;
+import com.smile.dto.response.PostResponseDTO;
 import com.smile.entity.Category;
 import com.smile.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,7 +28,9 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping
-    public String find(Pageable pageable, Model model, @ModelAttribute("userId") Long userId) {
+    public String find(Model model,
+                       @PageableDefault(size = 7) Pageable pageable,
+                       @ModelAttribute("userId") Long userId) {
         Page<PostResponseDTO> postResponseDTOPage = postService.findAll(pageable, userId);
         model.addAttribute("post", postResponseDTOPage.getContent());
         model.addAttribute("paging", postResponseDTOPage);

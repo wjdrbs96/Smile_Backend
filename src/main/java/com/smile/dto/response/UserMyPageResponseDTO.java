@@ -1,4 +1,4 @@
-package com.smile.dto;
+package com.smile.dto.response;
 
 import lombok.Builder;
 import lombok.Getter;

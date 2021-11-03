@@ -1,6 +1,6 @@
 package com.smile.service;
 
-import com.smile.dto.UserMyPageResponseDTO;
+import com.smile.dto.response.UserMyPageResponseDTO;
 import com.smile.entity.User;
 import com.smile.error.EntityNotFoundException;
 import com.smile.repository.PostRepository;
@@ -23,7 +23,7 @@ public class UserService {
     }
 
     public User findOne(Long userId) {
-        return userRepository.findById(1L).orElseThrow(() -> new EntityNotFoundException("User is Not Exist!!"));
+        return userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User is Not Exist!!"));
     }
 
 }
