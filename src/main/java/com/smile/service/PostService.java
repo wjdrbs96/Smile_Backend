@@ -1,6 +1,6 @@
 package com.smile.service;
 
-import com.smile.dto.request.PostCreateRequestDTO;
+import com.smile.dto.request.PostSaveRequestDTO;
 import com.smile.dto.request.PostUpdateRequestDTO;
 import com.smile.dto.response.PostResponseDTO;
 import com.smile.entity.Category;
@@ -46,7 +46,7 @@ public class PostService {
     }
 
     @Transactional
-    public void save(PostCreateRequestDTO postCreateRequestDTO) {
+    public void save(PostSaveRequestDTO postCreateRequestDTO) {
         postRepository.save(postCreateRequestDTO.toEntity());
     }
 
