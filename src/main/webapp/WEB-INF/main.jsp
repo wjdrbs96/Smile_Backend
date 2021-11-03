@@ -50,7 +50,7 @@
             </ul>
         </div>
     </nav>
-    <form action="http://localhost:8080/post/search" method="post" class="form-inline">
+    <form action="/post/search" method="post" class="form-inline">
         <div id="margin" class="form-group">
             <select name="type" class="form-control">
                 <option value="title">제목</option>
@@ -78,7 +78,7 @@
                 <th>${post.getId()}</th>
                 <th>${post.getUsername()}</th>
                 <th>
-                    <a href="http://localhost:8080/post/${post.getId()}/return?check=1">${post.getTitle()}</a>
+                    <a href="/post/${post.getId()}/return?check=1">${post.getTitle()}</a>
                 </th>
                 <th>${post.getContent()}</th>
                 <th>${post.getCategory().getCategoryKorean()}</th>
@@ -89,12 +89,12 @@
         </c:forEach>
     </table>
 
-    <a href="http://localhost:8080/post/return" class="btn btn-default pull-right">글쓰기</a>
+    <a href="/post/return" class="btn btn-default pull-right">글쓰기</a>
 
     <ul class="pagination">
         <c:forEach var="i" begin="1" end="${paging.getTotalPages()}" step="1">
             <li class=<c:if test='${i} == ${paging.getPageable().getPageNumber()} ? "active" : ""'/>>
-                <a href='http://localhost:8080/post?page=${i - 1}&size=${paging.getSize()}'>${i}</a>
+                <a href='/post?page=${i - 1}&size=${paging.getSize()}'>${i}</a>
             </li>
         </c:forEach>
     </ul>

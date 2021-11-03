@@ -39,7 +39,7 @@ public class Post extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Category category;
 
-    private Long views;  // 조회 수
+    private long views;  // 조회 수
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
@@ -51,7 +51,7 @@ public class Post extends BaseEntity {
         this.category = postUpdateRequestDTO.getCategory();
     }
 
-    public void increaseViews(Long views) {
+    public void increaseViews(long views) {
         this.views = views;
     }
 

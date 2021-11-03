@@ -31,7 +31,7 @@
 
 <div class="container">
 
-    <form action="http://localhost:8080/post/${post.getId()}" method="POST">
+    <form action="/post/${post.getId()}" method="POST">
         <input type="hidden" name="_method" value="PUT"/>
         <h1>게시글 보기</h1>
         <table class="table table-bordered table-condensed">
