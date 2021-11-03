@@ -21,21 +21,21 @@ public class CommentController {
     private final CommentService commentService;
 
     @GetMapping("/{postId}/comment")
-    public String getPostComment(@PathVariable Long postId, Model model) {
-        model.addAttribute("comment", commentService.findComment(postId));
+    public String getPostComments(@PathVariable Long postId, Model model) {
+        model.addAttribute("comment", commentService.findAll(postId));
         model.addAttribute("postId", postId);
         return "postComment";
     }
 
     @PostMapping("/{postId}/comment")
     public String writePostComment(@PathVariable Long postId, @RequestParam String content) {
-        commentService.saveComment(postId, content);
+        commentService.save(postId, content);
         return MessageFormat.format("redirect:/post/{0}/comment", postId);
     }
 
     @DeleteMapping("/{postId}/comment/{commentId}")
     public String deleteComment(@PathVariable Long postId, @PathVariable Long commentId) {
-        commentService.deleteComment(commentId);
+        commentService.delete(commentId);
         return MessageFormat.format("redirect:/post/{0}/comment", postId);
     }
 

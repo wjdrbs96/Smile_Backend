@@ -24,7 +24,7 @@ public class CommentService {
     private final CommentRepository commentRepository;
 
     @Transactional(readOnly = true)
-    public List<PostCommentResponseDTO> findComment(Long postId) {
+    public List<PostCommentResponseDTO> findAll(Long postId) {
         Post post = postService.findOne(postId);
         return commentRepository.findByPostAndUser(post, createUser()).stream()
                 .map(PostCommentResponseDTO::from)
@@ -32,13 +32,13 @@ public class CommentService {
     }
 
     @Transactional
-    public void saveComment(Long postId, String content) {
+    public void save(Long postId, String content) {
         Post post = postService.findOne(postId);
         commentRepository.save(createComment(post, content));
     }
 
     @Transactional
-    public void deleteComment(Long commentId) {
+    public void delete(Long commentId) {
         Comment comment = commentRepository.findById(commentId).orElseThrow(() -> new EntityNotFoundException("Comment is Not Exist"));
         commentRepository.delete(comment);
     }

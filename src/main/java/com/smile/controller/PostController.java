@@ -27,8 +27,8 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping
-    public String find(Pageable pageable, Model model) {
-        Page<PostResponseDTO> postResponseDTOPage = postService.findAll(pageable);
+    public String find(Pageable pageable, Model model, @ModelAttribute("userId") Long userId) {
+        Page<PostResponseDTO> postResponseDTOPage = postService.findAll(pageable, userId);
         model.addAttribute("post", postResponseDTOPage.getContent());
         model.addAttribute("paging", postResponseDTOPage);
         return "main";

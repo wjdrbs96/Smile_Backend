@@ -11,15 +11,12 @@ import java.util.List;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
 
-    List<Post> findAllByUserOrderByIdDesc(User user, Pageable pageable);
-
     Page<Post> findByUser(User user, Pageable pageable);
 
     Long countByUser(User user);
 
     @Query("SELECT SUM(p.views) FROM Post p WHERE p.user =:user")
     Long findAllByUserViewsCount(User user);
-
 
     List<Post> findAllByTitleContainingAndUser(String title, User user);
 

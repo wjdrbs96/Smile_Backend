@@ -40,16 +40,8 @@ public class PostService {
         }
     }
 
-    public List<PostResponseDTO> findAllByUserOrderByIdDesc(PageRequest paging) {
-        // 로그인이 되어 있다 가정이라 1번 유저가 존재한다고 가정해서 1L 로 하드코딩
-        User user = userService.findOne(1L);
-        return postRepository.findAllByUserOrderByIdDesc(user, paging).stream()
-                .map(PostResponseDTO::from)
-                .collect(Collectors.toList());
-    }
-
-    public Page<PostResponseDTO> findAll(Pageable pageable) {
-        User user = userService.findOne(1L);
+    public Page<PostResponseDTO> findAll(Pageable pageable, Long userId) {
+        User user = userService.findOne(userId);
         return postRepository.findByUser(user, pageable)
                 .map(PostResponseDTO::from);
     }
