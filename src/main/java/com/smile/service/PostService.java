@@ -2,6 +2,7 @@ package com.smile.service;
 
 import com.smile.dto.PostResponseDTO;
 import com.smile.dto.request.PostCreateRequestDTO;
+import com.smile.dto.request.PostUpdateRequestDTO;
 import com.smile.entity.Category;
 import com.smile.entity.Post;
 import com.smile.entity.User;
@@ -59,9 +60,9 @@ public class PostService {
     }
 
     @Transactional
-    public void update(Long postId, String title, String content, Category category) {
-        Post post = findOne(postId);
-        post.changePost(title, content, category);
+    public void update(PostUpdateRequestDTO postUpdateRequestDTO) {
+        Post post = findOne(postUpdateRequestDTO.getPostId());
+        post.changePost(postUpdateRequestDTO);
     }
 
     @Transactional

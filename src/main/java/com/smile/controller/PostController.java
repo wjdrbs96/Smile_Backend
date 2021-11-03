@@ -2,6 +2,7 @@ package com.smile.controller;
 
 import com.smile.dto.PostResponseDTO;
 import com.smile.dto.request.PostCreateRequestDTO;
+import com.smile.dto.request.PostUpdateRequestDTO;
 import com.smile.entity.Category;
 import com.smile.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +34,6 @@ public class PostController {
         return "main";
     }
 
-    // api 용도
     @PostMapping
     public String create(@RequestParam String title,
                          @RequestParam String content,
@@ -46,9 +46,9 @@ public class PostController {
     public String update(@PathVariable Long postId,
                          @RequestParam String title,
                          @RequestParam String content,
-                         @RequestParam Category category,
-                         @ModelAttribute("userId") Long userId) {
-        postService.update(postId, title, content, category);
+                         @RequestParam Category category) {
+        // @ModelAttribute("userId") Long userId (보류)
+        postService.update(new PostUpdateRequestDTO(postId, title, content, category));
         return "redirect:/post";
     }
 
