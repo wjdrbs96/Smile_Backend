@@ -1,5 +1,6 @@
 package com.smile.entity;
 
+import com.smile.dto.request.PostUpdateRequestDTO;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -47,23 +48,14 @@ public class Post extends BaseEntity {
     @JoinColumn
     private User user;
 
-    public void changePost(String title, String content, Category category) {
-        this.title = title;
-        this.content = content;
-        this.category = category;
+    public void changePost(PostUpdateRequestDTO postUpdateRequestDTO) {
+        this.title = postUpdateRequestDTO.getTitle();
+        this.content = postUpdateRequestDTO.getContent();
+        this.category = postUpdateRequestDTO.getCategory();
     }
 
     public void increaseViews(Long views) {
         this.views = views;
-    }
-
-    public static Post createPost(String title, String content, Category category) {
-        return Post.builder()
-                .title(title)
-                .content(content)
-                .category(category)
-                .user(createUser())
-                .build();
     }
 
 }

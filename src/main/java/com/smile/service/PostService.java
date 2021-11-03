@@ -1,6 +1,8 @@
 package com.smile.service;
 
 import com.smile.dto.PostResponseDTO;
+import com.smile.dto.request.PostCreateRequestDTO;
+import com.smile.dto.request.PostUpdateRequestDTO;
 import com.smile.entity.Category;
 import com.smile.entity.Post;
 import com.smile.entity.User;
@@ -17,8 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static com.smile.entity.Post.createPost;
 
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -55,14 +55,14 @@ public class PostService {
     }
 
     @Transactional
-    public void save(String title, String content, Category category) {
-        postRepository.save(createPost(title, content, category));
+    public void save(PostCreateRequestDTO postCreateRequestDTO) {
+        postRepository.save(postCreateRequestDTO.toEntity());
     }
 
     @Transactional
-    public void update(Long postId, String title, String content, Category category) {
-        Post post = findOne(postId);
-        post.changePost(title, content, category);
+    public void update(PostUpdateRequestDTO postUpdateRequestDTO) {
+        Post post = findOne(postUpdateRequestDTO.getPostId());
+        post.changePost(postUpdateRequestDTO);
     }
 
     @Transactional
