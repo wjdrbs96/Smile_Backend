@@ -39,16 +39,19 @@ public class Post extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Category category;
 
+    private String imagePath;
+
     private long views;  // 조회 수
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     private User user;
 
-    public void changePost(PostUpdateRequestDTO postUpdateRequestDTO) {
-        this.title = postUpdateRequestDTO.getTitle();
-        this.content = postUpdateRequestDTO.getContent();
-        this.category = postUpdateRequestDTO.getCategory();
+    public void changePost(Post post) {
+        this.title = post.getTitle();
+        this.content = post.getContent();
+        this.category = post.getCategory();
+        this.imagePath = post.getImagePath();
     }
 
     public void increaseViews(long views) {

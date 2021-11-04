@@ -43,7 +43,15 @@
             </tr>
             <tr>
                 <td>카테고리</td>
-                <td><input type="text" value="${post.getCategory().getCategoryKorean()}" name="category" readonly/></td>
+                <td>
+                    <label>
+                        <input type="text" value="${post.getCategory().getCategoryKorean()}" name="category" readonly/>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>이미지</td>
+                <td><img src="${post.getImagePath()}" alt="image"/></td>
             </tr>
             <tr>
                 <td>작성자</td>

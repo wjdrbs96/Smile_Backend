@@ -18,7 +18,7 @@
 
     <h1>게시글 등록</h1>
 
-    <form action="/post" method="post">
+    <form action="/post" method="post" enctype="multipart/form-data">
         <table class="table table-bordered table-condensed">
             <tr>
                 <td>글 제목</td>
@@ -49,6 +49,12 @@
                             </select>
                         </label>
                     </div>
+                </td>
+            </tr>
+            <tr>
+                <td>파일 업로드</td>
+                <td>
+                    <input multiple="multiple" name="image" type="file">
                 </td>
             </tr>
         </table>

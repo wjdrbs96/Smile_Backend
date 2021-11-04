@@ -16,6 +16,7 @@ public class PostResponseDTO {
     private String title;
     private String content;
     private Category category;
+    private String imagePath;
     private Long views;
     private LocalDateTime createdTime;
     private LocalDateTime lastModifiedTime;
@@ -27,6 +28,7 @@ public class PostResponseDTO {
                 .title(post.getTitle())
                 .content(post.getContent())
                 .category(post.getCategory())
+                .imagePath(post.getImagePath())
                 .views(post.getViews())
                 .createdTime(post.getCreatedTime())
                 .lastModifiedTime(post.getLastModifiedTime())

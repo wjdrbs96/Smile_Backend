@@ -4,6 +4,7 @@ import com.smile.dto.request.PostSaveRequestDTO;
 import com.smile.dto.request.PostUpdateRequestDTO;
 import com.smile.dto.response.PostResponseDTO;
 import com.smile.entity.Category;
+import com.smile.service.FileUploadService;
 import com.smile.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @RequiredArgsConstructor
 @RequestMapping("/post")
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PostController {
 
     private final PostService postService;
+    private final FileUploadService fileUploadService;
 
     @GetMapping
     public String find(Model model,
@@ -40,8 +43,9 @@ public class PostController {
     @PostMapping
     public String create(@RequestParam String title,
                          @RequestParam String content,
-                         @RequestParam Category category) {
-        postService.save(new PostSaveRequestDTO(title, content, category));
+                         @RequestParam Category category,
+                         @RequestParam(name = "image") MultipartFile multipartFile) {
+        postService.save(new PostSaveRequestDTO(title, content, category, fileUploadService.upload(multipartFile)));
         return "redirect:/post";
     }
 
@@ -49,9 +53,10 @@ public class PostController {
     public String update(@PathVariable Long postId,
                          @RequestParam String title,
                          @RequestParam String content,
-                         @RequestParam Category category) {
+                         @RequestParam Category category,
+                         @RequestParam(name = "image") MultipartFile multipartFile) {
         // @ModelAttribute("userId") Long userId (보류)
-        postService.update(new PostUpdateRequestDTO(postId, title, content, category));
+        postService.update(new PostUpdateRequestDTO(postId, title, content, category, fileUploadService.upload(multipartFile)));
         return "redirect:/post";
     }
 

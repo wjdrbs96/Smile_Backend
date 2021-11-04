@@ -53,7 +53,7 @@ public class PostService {
     @Transactional
     public void update(PostUpdateRequestDTO postUpdateRequestDTO) {
         Post post = findOne(postUpdateRequestDTO.getPostId());
-        post.changePost(postUpdateRequestDTO);
+        post.changePost(postUpdateRequestDTO.toEntity());
     }
 
     @Transactional

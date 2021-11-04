@@ -19,4 +19,9 @@ public class GlobalExceptionHandler {
         return "error";
     }
 
+    @ExceptionHandler(FileUploadIOException.class)
+    public String fileUploadIOException() {
+        return "error";
+    }
+
 }

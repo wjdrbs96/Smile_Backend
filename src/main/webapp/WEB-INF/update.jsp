@@ -16,7 +16,7 @@
 
 <div class="container">
 
-    <form action="/post/${post.getId()}" method="POST">
+    <form action="/post/${post.getId()}" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="_method" value="PUT"/>
         <h1>게시글 보기</h1>
         <table class="table table-bordered table-condensed">
@@ -56,6 +56,12 @@
                 </td>
             </tr>
             <tr>
+                <td>이미지</td>
+                <td>
+                    <input multiple="multiple" name="image" type="file">
+                </td>
+            </tr>
+            <tr>
                 <td>작성자</td>
                 <td>${post.getUsername()}</td>
             </tr>
@@ -69,5 +75,11 @@
         <a href="javascript:window.history.back()" class="btn btn-info">뒤로가기</a>
     </form>
 </div>
+
+<script>
+    function toggleImg() {
+        document.getElementById("img").src = "${path}";
+    }
+</script>
 </body>
 </html>
