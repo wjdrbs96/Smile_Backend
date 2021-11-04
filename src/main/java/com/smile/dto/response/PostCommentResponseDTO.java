@@ -2,10 +2,13 @@ package com.smile.dto.response;
 
 import com.smile.entity.Comment;
 import com.smile.entity.Post;
+import com.smile.util.LocalDateTimeToStringUtil;
 import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+
+import static com.smile.util.LocalDateTimeToStringUtil.localDateTimeToStringConverter;
 
 @Builder
 @Getter
@@ -15,7 +18,7 @@ public class PostCommentResponseDTO {
     private Long commentId;
     private String username;
     private String content;
-    private LocalDateTime createdTime;
+    private String createdTime;
 
     public static PostCommentResponseDTO from(Comment comment) {
         Post post = comment.getPost();
@@ -24,7 +27,7 @@ public class PostCommentResponseDTO {
                 .commentId(comment.getId())
                 .username(comment.getUser().getName())
                 .content(comment.getComment())
-                .createdTime(comment.getCreatedTime())
+                .createdTime(localDateTimeToStringConverter(comment.getCreatedTime()))
                 .build();
     }
 
