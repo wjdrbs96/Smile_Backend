@@ -1,6 +1,8 @@
 # `Smilegate BackEnd`
 
-> 주제: 블로그 개발 (Database, Front-end)
+> 주제: 블로그 개발 (Database, Front-end) <br>
+> 
+> 참고사항 : 프로젝트를 실행하려면 AWS IAM AccessKey, SecretKey 가 필요합니다!
 
 <br> <br>
 
