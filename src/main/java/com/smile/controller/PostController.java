@@ -62,10 +62,10 @@ public class PostController {
     }
 
     @PostMapping("/search")
-    public String search(@RequestParam String type,
+    public String search(//@RequestParam String type,
                          @RequestParam String keyword,
                          Model model) {
-        model.addAttribute("post", postService.findSearch(type, keyword));
+        model.addAttribute("post", postService.findSearch(keyword));
         return "main";
     }
 

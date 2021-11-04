@@ -38,7 +38,7 @@
         <div id="margin" class="form-group">
             <select name="type" class="form-control">
                 <option value="title">제목</option>
-                <option value="category">카테고리</option>
+<%--                <option value="category">카테고리</option>--%>
             </select>
             <input type="text" size=20 class="form-control" name="keyword" placeholder="검색">
             <button type="submit" class="btn btn-primary">조회</button>
