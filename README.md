@@ -305,9 +305,10 @@ HTTP Method의 POST, PUT을 사용할 때 데이터를 받아올 때 `@RequestBo
 - `Java 11`
 - `Spring Boot`
 - `Spring Data JPA`
-- `Java Server Page(JSP)`
 - `H2 DataBase`
 - `AWS S3`
+- `HTML`, `CSS`
+- `Java Server Page(JSP)`
 - `JUnit5`
 
 <br> <br>
