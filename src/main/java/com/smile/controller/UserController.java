@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -18,8 +19,9 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public String myPage(Model model) {
-        model.addAttribute("mypage", userService.findMyPage());
+    public String myPage(Model model,
+                         @ModelAttribute("userId") Long userId) {
+        model.addAttribute("mypage", userService.findMyPage(userId));
         return "myPage";
     }
 
