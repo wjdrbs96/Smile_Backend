@@ -5,7 +5,7 @@ import com.smile.entity.Post;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
+import static com.smile.util.LocalDateTimeToStringUtil.localDateTimeToStringConverter;
 
 @Builder
 @Getter
@@ -18,8 +18,10 @@ public class PostResponseDTO {
     private Category category;
     private String imagePath;
     private Long views;
-    private LocalDateTime createdTime;
-    private LocalDateTime lastModifiedTime;
+
+    private String createdTime;
+
+    private String lastModifiedTime;
 
     public static PostResponseDTO from(Post post) {
         return PostResponseDTO.builder()
@@ -30,8 +32,8 @@ public class PostResponseDTO {
                 .category(post.getCategory())
                 .imagePath(post.getImagePath())
                 .views(post.getViews())
-                .createdTime(post.getCreatedTime())
-                .lastModifiedTime(post.getLastModifiedTime())
+                .createdTime(localDateTimeToStringConverter(post.getCreatedTime()))
+                .lastModifiedTime(localDateTimeToStringConverter(post.getLastModifiedTime()))
                 .build();
     }
 
