@@ -16,12 +16,14 @@ public class PostSaveRequestDTO {
     private String title;
     private String content;
     private Category category;
+    private String imagePath;
 
     public Post toEntity() {
         return Post.builder()
                 .title(title)
                 .content(content)
                 .category(category)
+                .imagePath(imagePath)
                 .user(createUser())
                 .build();
     }

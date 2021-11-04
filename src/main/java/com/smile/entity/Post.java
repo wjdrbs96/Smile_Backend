@@ -39,6 +39,8 @@ public class Post extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Category category;
 
+    private String imagePath;
+
     private long views;  // 조회 수
 
     @ManyToOne(fetch = FetchType.LAZY)

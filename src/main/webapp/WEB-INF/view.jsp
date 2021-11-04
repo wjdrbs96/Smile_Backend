@@ -46,6 +46,10 @@
                 <td><input type="text" value="${post.getCategory().getCategoryKorean()}" name="category" readonly/></td>
             </tr>
             <tr>
+                <td>이미지</td>
+                <td><img src="${post.getImagePath()}" alt="image"/></td>
+            </tr>
+            <tr>
                 <td>작성자</td>
                 <td>${post.getUsername()}</td>
             </tr>
