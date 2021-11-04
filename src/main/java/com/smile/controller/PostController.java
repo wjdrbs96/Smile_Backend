@@ -55,7 +55,6 @@ public class PostController {
                          @RequestParam String content,
                          @RequestParam Category category,
                          @RequestParam(name = "image") MultipartFile multipartFile) {
-        // @ModelAttribute("userId") Long userId (보류)
         postService.update(new PostUpdateRequestDTO(postId, title, content, category, fileUploadService.upload(multipartFile)));
         return "redirect:/post";
     }
@@ -67,8 +66,7 @@ public class PostController {
     }
 
     @PostMapping("/search")
-    public String search(//@RequestParam String type,
-                         @RequestParam String keyword,
+    public String search(@RequestParam String keyword,
                          Model model) {
         model.addAttribute("post", postService.findSearch(keyword));
         return "main";
