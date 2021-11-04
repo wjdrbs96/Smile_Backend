@@ -32,7 +32,7 @@ class PostServiceTest {
     @DisplayName("게시글 저장이 잘 되는지 테스트")
     @Test
     void savePostTest() {
-        PostSaveRequestDTO postSaveRequestDTO = new PostSaveRequestDTO("제목", "내용", Category.BOOK);
+        PostSaveRequestDTO postSaveRequestDTO = new PostSaveRequestDTO("제목", "내용", Category.BOOK, "ImageUrl");
         Post savePost = postRepository.save(postSaveRequestDTO.toEntity());
         Post findPost = postRepository.findById(savePost.getId()).orElseThrow(() -> new EntityNotFoundException("Entity is Not Empty!!"));
 
@@ -62,7 +62,7 @@ class PostServiceTest {
     @DisplayName("게시글 수정이 잘 되는지 테스트")
     @Test
     void updatePostTest() {
-        PostUpdateRequestDTO dto = new PostUpdateRequestDTO(1L, "제목", "내용", Category.STUDY);
+        PostUpdateRequestDTO dto = new PostUpdateRequestDTO(1L, "제목", "내용", Category.STUDY, "imageUrl");
         postService.update(dto);
 
         Post post = findPost(1L);

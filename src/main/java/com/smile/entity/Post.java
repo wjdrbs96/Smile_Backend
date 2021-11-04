@@ -47,10 +47,11 @@ public class Post extends BaseEntity {
     @JoinColumn
     private User user;
 
-    public void changePost(PostUpdateRequestDTO postUpdateRequestDTO) {
-        this.title = postUpdateRequestDTO.getTitle();
-        this.content = postUpdateRequestDTO.getContent();
-        this.category = postUpdateRequestDTO.getCategory();
+    public void changePost(Post post) {
+        this.title = post.getTitle();
+        this.content = post.getContent();
+        this.category = post.getCategory();
+        this.imagePath = post.getImagePath();
     }
 
     public void increaseViews(long views) {

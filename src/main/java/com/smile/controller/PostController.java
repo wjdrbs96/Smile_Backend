@@ -53,9 +53,10 @@ public class PostController {
     public String update(@PathVariable Long postId,
                          @RequestParam String title,
                          @RequestParam String content,
-                         @RequestParam Category category) {
+                         @RequestParam Category category,
+                         @RequestParam(name = "image") MultipartFile multipartFile) {
         // @ModelAttribute("userId") Long userId (보류)
-        postService.update(new PostUpdateRequestDTO(postId, title, content, category));
+        postService.update(new PostUpdateRequestDTO(postId, title, content, category, fileUploadService.upload(multipartFile)));
         return "redirect:/post";
     }
 
