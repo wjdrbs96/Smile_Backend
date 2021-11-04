@@ -18,7 +18,7 @@
 
     <form action="/post/${post.getId()}" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="_method" value="PUT"/>
-        <h1>게시글 보기</h1>
+        <h1>게시글 수정</h1>
         <table class="table table-bordered table-condensed">
             <tr>
                 <td>게시글 번호</td>
