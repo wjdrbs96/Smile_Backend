@@ -116,7 +116,7 @@
 
 <br> <br>
 
-## `Directory Tree`
+## `프로젝트 구조`
 
 ```
 ├───main/
@@ -174,6 +174,13 @@
                 ├───PostServiceTest/
                 ├───UserServiceTest/
 ```
+
+<br> <br>
+
+## `📂 Database Modeling`
+
+![스크린샷 2021-11-05 오전 12 32 58](https://user-images.githubusercontent.com/45676906/140357985-f095e994-e6c2-418c-957e-9ff67d20f43f.png)
+
 
 <br> <br>
 
@@ -243,7 +250,6 @@ cloud:
 
 <br>
 
-
 ![스크린샷 2021-11-04 오후 11 05 50](https://user-images.githubusercontent.com/45676906/140328261-cfd9d42e-0537-471b-8395-a19039ed212c.png)
 
 `User`, `Comment`, `Post`에 대해서 단위 테스트를 적용하였습니다. ([테스트 코드 보러가기](https://github.com/wjdrbs96/Smile_Backend/tree/develop/src/test/java/com/smile/service))
@@ -252,13 +258,45 @@ cloud:
 
 ## `아쉬운 점`
 
-### `디자인을 고려하지 못함`
+### `디자인을 이쁘게 하지 못한 부분`
 
-평소에 프론트엔드, 디자인에 대해서 다루어 본 경험이 거의 없다보니 고려하지 못했습니다.
+평소에 프론트엔드, 디자인에 대해서 다루어 본 경험이 거의 없다보니 디자인을 고려하지 못하고 프론트엔드 코드를 작성한 것이 아쉽다고 생각합니다. 
 
+<br> <br>
 
+### `@RequestBody를 사용하지 못한 부분`
 
-- @RequestBody를 사용하지 못한 부분 -> 작성 예정
+HTTP Method의 POST, PUT을 사용할 때 데이터를 받아올 때 `@RequestBody`를 사용하여 HTTP Body 데이터를 받아왔습니다. 하지만 이번에는 프론트엔드에서 `html-css-jsp`로만 구현하다보니 form 태그에서 `x-www-form-urlencoded`를 지원해서 `RequestParam`을 사용해서 받아왔습니다. 
+
+이 부분을 개선하기 위해서 `ajax`를 사용해서 `application/json`으로 요청을 보낼 수도 있었지만 좀 더 `Java` 코드에 집중하기 위해서 `jsp`를 사용해서 구현하는 것으로 결정하였습니다.
+
+![스크린샷 2021-11-05 오전 12 10 13](https://user-images.githubusercontent.com/45676906/140341790-da92596d-b6ce-4bde-aa39-f87a8ecae60b.png)
+
+그래서 위처럼 내부에서 `DTO`로 묶어서 `Service` 계층으로 보내는 것으로 하였지만, 프론트엔드를 잘 모르다보니 이 부분을 더 개선하지 못한 것이 아쉽다고 생각합니다. 
+
+<br> <br>
+
+## `Pull Request 모아보기`
+
+- [Pull Request 모아보기](https://github.com/wjdrbs96/Smile_Backend/pulls?q=is%3Apr+is%3Aclosed)
+
+<br> <br>
+
+## `Git Branch Convention`
+
+- `develop`: master로 머지 되기 전 개발하는 브랜치입니다.
+- `feature`: API 기능을 개발하는 브랜치 입니다.
+- `fix`: 버그 수정 사항을 해결하는 브랜치입니다.
+- `refactor`: 코드 리팩터링을 할 때 사용하는 브랜치입니다.
+
+<br> <br>
+
+## `Git Commit Convention`
+
+- `Feat`: 기능을 개발할 때 사용합니다.
+- `Refactor`: 리팩터링 할 때 사용합니다.
+- `Fix`: 버그 수정 사항을 해결할 때 사용합니다.
+- `Test`: 테스트 코드를 작성할 때 사용합니다.
 
 <br> <br>
 
