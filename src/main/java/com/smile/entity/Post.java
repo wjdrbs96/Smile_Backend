@@ -1,6 +1,5 @@
 package com.smile.entity;
 
-import com.smile.dto.request.PostUpdateRequestDTO;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

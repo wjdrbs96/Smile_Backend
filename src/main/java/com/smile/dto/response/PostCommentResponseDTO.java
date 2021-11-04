@@ -2,11 +2,8 @@ package com.smile.dto.response;
 
 import com.smile.entity.Comment;
 import com.smile.entity.Post;
-import com.smile.util.LocalDateTimeToStringUtil;
 import lombok.Builder;
 import lombok.Getter;
-
-import java.time.LocalDateTime;
 
 import static com.smile.util.LocalDateTimeToStringUtil.localDateTimeToStringConverter;
 
