@@ -17,8 +17,8 @@ public class UserService {
     private final UserRepository userRepository;
     private final PostRepository postRepository;
 
-    public UserMyPageResponseDTO findMyPage() {
-        User user = findOne(1L);
+    public UserMyPageResponseDTO findMyPage(Long userId) {
+        User user = findOne(userId);
         return UserMyPageResponseDTO.from(user.getName(), postRepository.countByUser(user), postRepository.findAllByUserViewsCount(user));
     }
 
