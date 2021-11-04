@@ -1,5 +1,6 @@
 package com.smile.service;
 
+import com.smile.dto.response.CommentResponseDTO;
 import com.smile.dto.response.PostCommentResponseDTO;
 import com.smile.entity.Comment;
 import com.smile.entity.Post;
@@ -38,8 +39,23 @@ public class CommentService {
 
     @Transactional
     public void delete(Long commentId) {
-        Comment comment = commentRepository.findById(commentId).orElseThrow(() -> new EntityNotFoundException("Comment is Not Exist"));
+        Comment comment = findById(commentId);
         commentRepository.delete(comment);
+    }
+
+    public CommentResponseDTO findOne(Long commentId) {
+        Comment comment = findById(commentId);
+        return CommentResponseDTO.from(comment);
+    }
+
+    @Transactional
+    public void update(Long commentId, String content) {
+        Comment comment = findById(commentId);
+        comment.changeComment(content);
+    }
+
+    private Comment findById(Long commentId) {
+        return commentRepository.findById(commentId).orElseThrow(() -> new EntityNotFoundException("Entity is Not Empty!!"));
     }
 
 }

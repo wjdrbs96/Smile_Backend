@@ -24,17 +24,19 @@
             <th>작성자</th>
             <th>내용</th>
             <th>작성시간</th>
+            <th>수정</th>
             <th>삭제</th>
         </tr>
 
         <c:forEach items="${comment}" var="comment">
-            <form action="/post/${comment.getPostId()}/comment/${comment.getCommentId()}" method="POST">
+            <form action="/post/${postId}/comment/${comment.getCommentId()}" method="POST">
                 <input type="hidden" name="_method" value="DELETE"/>
                 <tr>
                     <th>${comment.getCommentId()}</th>
                     <th>${comment.getUsername()}</th>
                     <th><a href="http://localhost:8080">${comment.getContent()}</a></th>
                     <th>${comment.getCreatedTime()}</th>
+                    <th><a href="/post/${postId}/comment/${comment.getCommentId()}/return" class="btn btn-info">수정</a></th>
                     <th><button type="submit" class="btn btn-primary">삭제</button></th>
                 </tr>
             </form>
