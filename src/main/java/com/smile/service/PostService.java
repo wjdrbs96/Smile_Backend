@@ -74,8 +74,7 @@ public class PostService {
         return postRepository.findById(postId).orElseThrow(() -> new EntityNotFoundException("Post is Not Exist!!"));
     }
 
-    public List<PostResponseDTO> findSearch(String type, String keyword) {
-        // 검색 type 으로 나눠야함
+    public List<PostResponseDTO> findSearch(String keyword) {
         User user = userService.findOne(1L);
         return postRepository.findAllByTitleContainingAndUser(keyword, user).stream()
                 .map(PostResponseDTO::from)

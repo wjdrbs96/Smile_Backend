@@ -1,5 +1,6 @@
 package com.smile.repository;
 
+import com.smile.entity.Category;
 import com.smile.entity.Post;
 import com.smile.entity.User;
 import org.springframework.data.domain.Page;
@@ -19,5 +20,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     Long findAllByUserViewsCount(User user);
 
     List<Post> findAllByTitleContainingAndUser(String title, User user);
+
+    List<Post> findAllByCategoryContainingAndUser(Category category, User user);
 
 }
