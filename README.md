@@ -2,7 +2,9 @@
 
 > 주제: 블로그 개발 (Database, Front-end) <br>
 > 
-> 참고사항 : 프로젝트를 실행하려면 AWS IAM AccessKey, SecretKey 가 필요합니다!
+> 참고사항 : 프로젝트를 실행하려면 AWS IAM AccessKey, SecretKey 가 필요합니다! <br>
+> 
+> 과제 제출시 압축 파일로 낸 프로젝트로 실행하면 프로젝트를 실행할 수 있습니다!
 
 <br> <br>
 
@@ -128,8 +130,6 @@
         │   ├───PostController.java
         │   ├───UserController.java
         ├───dto/
-        │   └───auth.js
-        ├───models/
         │   ├───request
         │   │   │   ├───PostSaveRequestDTO.java
         │   │   │   ├───PostUpdateRequestDTO.java
